@@ -1,0 +1,28 @@
+LINES=$(tput lines)
+COLUMNS=$(tput cols)
+
+random_position() {
+    echo $(( RANDOM % (LINES - 6) + 1 )) $(( RANDOM % (COLUMNS - 20) + 1 ))
+}
+
+read ROW COL <<< $(random_position)
+
+SECONDS_ELAPSED=0
+while true; do
+    clear
+    
+    if (( SECONDS_ELAPSED % 10 == 0 )); then
+        read ROW COL <<< $(random_position)
+    fi
+    
+    TIME=$(date +"%H:%M:%S")
+    
+    tput cup $ROW $COL   
+    tput cup $((ROW+1)) $COL
+    echo "$TIME "
+    tput cup $((ROW+2)) $COL
+    
+    
+    sleep 1
+    ((SECONDS_ELAPSED++))
+done
