@@ -1,0 +1,23 @@
+#!/bin/bash
+
+input_file="input.txt"
+
+# Проверяем, существует ли файл
+if [ ! -f "$input_file" ]; then
+    echo "Ошибка: Файл '$input_file' не найден." >&2
+    exit 1
+fi
+
+# Проверяем, пуст ли файл
+if [ ! -s "$input_file" ]; then
+    echo "Предупреждение: Файл '$input_file' пуст." >&2
+    exit 1
+fi
+
+# Обрабатываем текст с учетом различных случаев
+sed -E ':a;N;$!ba;
+  s/^[[:space:]]*([[:lower:]])/\U\1/;   # Заглавная первая буква в файле
+  s/([.!?])([[:space:]\n]+)([[:lower:]])/\1\2\u\3/g' "$input_file" > "$input_file.tmp"
+
+mv "$input_file.tmp" "$input_file"
+echo "Обработка завершена. Исправленный текст сохранён в '$input_file'"
