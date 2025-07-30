@@ -1,0 +1,43 @@
+=== Сравнительный анализ эффективности синхронизаций ===
+Дата: Wed 30 Jul 2025 11:33:41 AM +03
+===============================================
+
+--- Конфигурация: Потоков = 5, Итераций = 500 ---
+Running tests with 5 threads and 500 iterations...
+Mutex NORMAL time: 0.00109601 sec
+Mutex ERRORCHECK time: 0.00096488 sec
+Mutex RECURSIVE time: 0.00317407 sec
+POSIX semaphore time: 0.00333786 sec
+System V semaphore time: 0.340292 sec
+Spinlock time: 0.00195408 sec
+Barrier time: 0.319599 sec
+
+--- Конфигурация: Потоков = 10, Итераций = 500 ---
+Running tests with 10 threads and 500 iterations...
+Mutex NORMAL time: 0.00415206 sec
+Mutex ERRORCHECK time: 0.00278997 sec
+Mutex RECURSIVE time: 0.0020771 sec
+POSIX semaphore time: 0.00259089 sec
+System V semaphore time: 1.37026 sec
+Spinlock time: 0.00438786 sec
+Barrier time: 0.496023 sec
+
+--- Конфигурация: Потоков = 20, Итераций = 1000 ---
+Running tests with 20 threads and 1000 iterations...
+Mutex NORMAL time: 0.00963402 sec
+Mutex ERRORCHECK time: 0.0152111 sec
+Mutex RECURSIVE time: 0.038038 sec
+POSIX semaphore time: 0.0208402 sec
+System V semaphore time: 5.33559 sec
+Spinlock time: 0.0509861 sec
+Barrier time: 1.18921 sec
+
+--- Конфигурация: Потоков = 50, Итераций = 200 ---
+Running tests with 50 threads and 200 iterations...
+Mutex NORMAL time: 0.0414748 sec
+Mutex ERRORCHECK time: 0.0397949 sec
+Mutex RECURSIVE time: 0.030858 sec
+POSIX semaphore time: 0.031251 sec
+System V semaphore time: 1.57937 sec
+Spinlock time: 0.0246141 sec
+Barrier time: 0.487728 sec
